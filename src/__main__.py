@@ -1,21 +1,18 @@
 
-from discord    import Intents
-from src.BOT    import BOT
-
-import asyncio
-import os
-
+from asyncio    import run
+from bot        import BOT
+from dotenv     import load_dotenv
+from os         import getenv
 
 
 async def main():
     bot = BOT(
         command_prefix = '',
-        intents = Intents.all()
     )
 
-    await bot.load_extensions('discord_cogs')
-    await bot.start(os.getenv('DISCORD_TOKEN'))
+    load_dotenv(verbose=True)
+    await bot.start(getenv('DISCORD_TOKEN'))
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    run(main())

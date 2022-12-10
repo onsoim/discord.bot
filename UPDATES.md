@@ -3,6 +3,10 @@
 
 Here is the list of all the updates
 
+### Version 0.0.2 (11 December 2022)
+
+* [FIX] import dependencies
+
 ### Version 0.0.1 (11 December 2022)
 
 * [INIT] discord bot in Python 3.8
