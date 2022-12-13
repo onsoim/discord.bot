@@ -3,6 +3,10 @@
 
 Here is the list of all the updates
 
+### Version 0.0.3 (13 December 2022)
+
+* [EDIT] token related logic from `__main__` to `BOT` class
+
 ### Version 0.0.2 (11 December 2022)
 
 * [FIX] import dependencies

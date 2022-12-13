@@ -1,8 +1,6 @@
 
 from asyncio    import run
 from bot        import BOT
-from dotenv     import load_dotenv
-from os         import getenv
 
 
 async def main():
@@ -10,8 +8,8 @@ async def main():
         command_prefix = '',
     )
 
-    load_dotenv(verbose=True)
-    await bot.start(getenv('DISCORD_TOKEN'))
+    await bot.load_extensions()
+    await bot.start()
 
 
 if __name__ == "__main__":
