@@ -7,29 +7,36 @@ from discord.ext.commands   import Cog
 class Loop(Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.channel_name = 'report'
-        self.channel_ids  = []
+
+        self.default_channel_name = 'report'
+        self.channel_names = [
+            self.default_channel_name,
+        ]
+        self.channel_ids  = {}
 
     @Cog.listener()
     async def on_ready(self):
-        for guild in self.bot.guilds:
-            found = False
+        for channel_name in self.channel_names:
+            self.channel_ids[channel_name] = []
 
-            for channel in guild.text_channels:
-                if channel.name == self.channel_name:
-                    self.channel_ids += [ channel.id ]
-                    found = True
-                    break
+            for guild in self.bot.guilds:
+                found = False
 
-            if not found:
-                channel = await guild.create_text_channel(self.channel_name)
-                self.channel_ids += [ channel.id ]
+                for channel in guild.text_channels:
+                    if channel.name == channel_name:
+                        self.channel_ids[channel_name] += [ channel.id ]
+                        found = True
+                        break
+
+                if not found:
+                    channel = await guild.create_text_channel(channel_name)
+                    self.channel_ids[channel_name] += [ channel.id ]
 
         self.every_second.start()
 
     @tasks.loop(seconds = 1)
     async def every_second(self):
-        for channel_id in self.channel_ids:
+        for channel_id in self.channel_ids[self.default_channel_name]:
             await self.bot.get_channel(channel_id).send(f'[{datetime.now()}] pong!')
 
 

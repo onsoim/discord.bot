@@ -3,6 +3,11 @@
 
 Here is the list of all the updates
 
+### Version 0.0.5 (14 December 2022)
+
+* [ADD] default_channel in Loop Cog
+* [EDIT] related logic to send report to default_channel
+
 ### Version 0.0.4 (14 December 2022)
 
 * [ADD] Prototype of Loop Cog that report every second
