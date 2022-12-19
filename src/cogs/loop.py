@@ -3,6 +3,8 @@ from datetime               import datetime
 from discord.ext            import tasks
 from discord.ext.commands   import Cog
 
+from cogs.utils.job         import JOB
+
 
 class Loop(Cog):
     def __init__(self, bot):
@@ -11,6 +13,7 @@ class Loop(Cog):
         self.default_channel_name   = 'report'
         self.channel_names          = [
             self.default_channel_name,
+            'job',
         ]
         self.channel_ids  = {}
 
@@ -42,8 +45,9 @@ class Loop(Cog):
 
     @tasks.loop(hours = 1)
     async def hourly(self):
-        for channel_id in self.channel_ids[self.default_channel_name]:
-            await self.bot.get_channel(channel_id).send(f'[{datetime.now()}] hourly pong!')
+        for channel_id in self.channel_ids['job']:
+            for job in JOB().get_new():
+                await self.bot.get_channel(channel_id).send(job)
 
 
 async def setup(bot):

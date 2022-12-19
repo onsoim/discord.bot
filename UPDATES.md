@@ -3,6 +3,10 @@
 
 Here is the list of all the updates
 
+### Version 0.0.7 (19 December 2022)
+
+* [ADD] JOB class to scrape job info
+
 ### Version 0.0.6 (19 December 2022)
 
 * [ADD] hourly loop in Loop Cog
