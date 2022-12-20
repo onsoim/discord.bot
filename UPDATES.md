@@ -3,6 +3,10 @@
 
 Here is the list of all the updates
 
+### Version 0.0.8 (20 December 2022)
+
+* [ADD] data load and dump functions to save previous run
+
 ### Version 0.0.7 (19 December 2022)
 
 * [ADD] JOB class to scrape job info
